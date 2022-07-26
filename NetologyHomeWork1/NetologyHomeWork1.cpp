@@ -3,68 +3,65 @@
 
 void readFile()
 {
-	 std::ifstream file("in.txt");
+	std::ifstream file("in.txt");
 
-    int sz = 0, x = 0;
+    int sz = 0, x = 0, sz2 = 0;
+
     if (file.is_open())
     {
         int a = 0;
         int a2 = 0;
         int it = 0;
-        while (!file.eof())
-        {
-            file >> it;
-            sz++;
-            it = 0;
-        }
-        file.clear();
-        file.seekg(0, file.beg);
         
-        int* arr = new int[sz]; //выделение памяти под массив
-
-        for (int i = 0; i < sz; i++) //заполнение массива
+        file >> sz;
+        int* arr = new int[sz+1]; //выделение памяти под массив
+        arr[0] = sz;
+        for (int i = 1; i < sz+1; i++) //заполнение массива
         {
             file >> x;
             arr[i] = x;
-            if (i == (arr[0]+1))
-            {
-                a2 = x;
-            }
         }
+
+        file >> sz2;
+        int* arr2 = new int[sz2+1]; //выделение памяти под массив2
+        arr2[0] = sz2;
+        for (int i2 = 1; i2 < sz2+1; i2++) //заполнение массива2
+        {
+            file >> x;
+            arr2[i2] = x;
+        }
+
 
         //вывод перевернутого массива1
         int temp = 0;
-        std::cout << a2 << std::endl;
-        for (int r2 = sz-1; r2 > a2+1; --r2)
+        std::cout << sz2 << std::endl; 
+        for (int r2 = sz2; r2 > 1; --r2) //переворот
         {
-            temp = arr[r2];
-            arr[r2] = arr[r2 - 1];
-            arr[r2 - 1] = temp;
+            temp = arr2[r2];
+            arr2[r2] = arr2[r2 - 1];
+            arr2[r2 - 1] = temp;
         }
-        
-            for (int r2 = a2+1; r2 < sz; ++r2)
-            {
-                std::cout << arr[r2] << " ";
-            }
+        for (int r2 = 1; r2 < sz2+1; ++r2) //вывод
+        {
+                std::cout << (arr2[r2]) << " ";
+        }
+        delete[] arr2;
 
         //вывод перевернутого массива2
         std::cout << std::endl;
         int temp2 = 0;
-        int it2 = arr[0];
-        std::cout << it2 << std::endl;
-        for (int r2 = 1; r2 < it2; ++r2)
+        std::cout << sz << std::endl; 
+        for (int r2 = 1; r2 < sz; ++r2) //переворот
         {
              temp2 = arr[r2];
              arr[r2] = arr[r2 + 1];
              arr[r2 + 1] = temp2;
         }
-
-            for (int r2 = 1; r2 < it2+1; ++r2)
-            {
-                std::cout << arr[r2] << " ";
-            }
-
-        delete[] arr; //очистка
+        for (int r2 = 1; r2 < sz+1; ++r2) //вывод
+        {
+                std::cout << (arr[r2]) << " ";
+        }
+        delete[] arr;
     }
     else
     {
@@ -79,5 +76,6 @@ int main()
 {
     setlocale(LC_ALL, "RU");
     readFile();
+    std::cout << std::endl;
     system("pause");
 }
