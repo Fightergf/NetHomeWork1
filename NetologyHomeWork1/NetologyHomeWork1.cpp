@@ -14,18 +14,16 @@ void readFile()
         int it = 0;
         
         file >> sz;
-        int* arr = new int[sz+1]; //выделение памяти под массив
-        arr[0] = sz;
-        for (int i = 1; i < sz+1; i++) //заполнение массива
+        int* arr = new int[sz]; //выделение памяти под массив
+        for (int i = 0; i < sz; i++) //заполнение массива
         {
             file >> x;
             arr[i] = x;
         }
 
         file >> sz2;
-        int* arr2 = new int[sz2+1]; //выделение памяти под массив2
-        arr2[0] = sz2;
-        for (int i2 = 1; i2 < sz2+1; i2++) //заполнение массива2
+        int* arr2 = new int[sz2]; //выделение памяти под массив2
+        for (int i2 = 0; i2 < sz2; i2++) //заполнение массива2
         {
             file >> x;
             arr2[i2] = x;
@@ -35,13 +33,13 @@ void readFile()
         //вывод перевернутого массива1
         int temp = 0;
         std::cout << sz2 << std::endl; 
-        for (int r2 = sz2; r2 > 1; --r2) //переворот
+        for (int r2 = sz2-1; r2 > 0; --r2) //переворот
         {
             temp = arr2[r2];
             arr2[r2] = arr2[r2 - 1];
             arr2[r2 - 1] = temp;
         }
-        for (int r2 = 1; r2 < sz2+1; ++r2) //вывод
+        for (int r2 = 0; r2 < sz2; ++r2) //вывод
         {
                 std::cout << (arr2[r2]) << " ";
         }
@@ -51,13 +49,13 @@ void readFile()
         std::cout << std::endl;
         int temp2 = 0;
         std::cout << sz << std::endl; 
-        for (int r2 = 1; r2 < sz; ++r2) //переворот
+        for (int r2 = 0; r2 < sz-1; ++r2) //переворот
         {
              temp2 = arr[r2];
              arr[r2] = arr[r2 + 1];
              arr[r2 + 1] = temp2;
         }
-        for (int r2 = 1; r2 < sz+1; ++r2) //вывод
+        for (int r2 = 0; r2 < sz; ++r2) //вывод
         {
                 std::cout << (arr[r2]) << " ";
         }
