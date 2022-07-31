@@ -9,9 +9,7 @@ void readFile()
 
     if (file.is_open())
     {
-        int a = 0;
-        int a2 = 0;
-        int it = 0;
+        int a = 0, a2 = 0, it = 0;
         
         file >> sz;
         int* arr = new int[sz]; //выделение памяти под массив
@@ -29,7 +27,6 @@ void readFile()
             arr2[i2] = x;
         }
 
-
         //вывод перевернутого массива1
         int temp = 0;
         std::cout << sz2 << std::endl; 
@@ -43,7 +40,6 @@ void readFile()
         {
                 std::cout << (arr2[r2]) << " ";
         }
-        delete[] arr2;
 
         //вывод перевернутого массива2
         std::cout << std::endl;
@@ -59,7 +55,20 @@ void readFile()
         {
                 std::cout << (arr[r2]) << " ";
         }
-        delete[] arr;
+
+        std::ofstream writeFile("out.txt");
+
+        writeFile << sz2 << "\n";
+        for (int r2 = 0; r2 < sz2; ++r2)
+        {
+            writeFile << arr2[r2] << " ";
+        }
+
+        writeFile << "\n" << sz << "\n";
+        for (int r = 0; r < sz; ++r)
+        {
+            writeFile << arr[r] << " ";
+        }
     }
     else
     {
@@ -75,5 +84,5 @@ int main()
     setlocale(LC_ALL, "RU");
     readFile();
     std::cout << std::endl;
-    system("pause");
+    //system("pause");
 }
