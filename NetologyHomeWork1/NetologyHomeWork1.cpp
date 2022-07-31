@@ -1,6 +1,23 @@
 ﻿#include <iostream>
 #include <fstream>
 
+void outFile(int* arr, int* arr2, int sz, int sz2)
+{
+    std::ofstream writeFile("out.txt"); //запись в файл
+
+    writeFile << sz2 << "\n";
+    for (int r2 = 0; r2 < sz2; ++r2)
+    {
+        writeFile << arr2[r2] << " ";
+    }
+
+    writeFile << "\n" << sz << "\n";
+    for (int r = 0; r < sz; ++r)
+    {
+        writeFile << arr[r] << " ";
+    }
+}
+
 void readFile()
 {
 	std::ifstream file("in.txt");
@@ -13,6 +30,7 @@ void readFile()
         
         file >> sz;
         int* arr = new int[sz]; //выделение памяти под массив
+
         for (int i = 0; i < sz; i++) //заполнение массива
         {
             file >> x;
@@ -21,6 +39,7 @@ void readFile()
 
         file >> sz2;
         int* arr2 = new int[sz2]; //выделение памяти под массив2
+
         for (int i2 = 0; i2 < sz2; i2++) //заполнение массива2
         {
             file >> x;
@@ -30,6 +49,7 @@ void readFile()
         //вывод перевернутого массива1
         int temp = 0;
         std::cout << sz2 << std::endl; 
+
         for (int r2 = sz2-1; r2 > 0; --r2) //переворот
         {
             temp = arr2[r2];
@@ -45,6 +65,7 @@ void readFile()
         std::cout << std::endl;
         int temp2 = 0;
         std::cout << sz << std::endl; 
+
         for (int r2 = 0; r2 < sz-1; ++r2) //переворот
         {
              temp2 = arr[r2];
@@ -56,19 +77,8 @@ void readFile()
                 std::cout << (arr[r2]) << " ";
         }
 
-        std::ofstream writeFile("out.txt");
+        outFile(arr, arr2, sz, sz2);
 
-        writeFile << sz2 << "\n";
-        for (int r2 = 0; r2 < sz2; ++r2)
-        {
-            writeFile << arr2[r2] << " ";
-        }
-
-        writeFile << "\n" << sz << "\n";
-        for (int r = 0; r < sz; ++r)
-        {
-            writeFile << arr[r] << " ";
-        }
     }
     else
     {
@@ -78,6 +88,7 @@ void readFile()
     }
     file.close();
 }
+
 
 int main()
 {
